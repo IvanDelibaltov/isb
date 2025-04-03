@@ -1,8 +1,7 @@
-import os
 from constant import ALPHABET
+from read_save import read_from_file, save_to_file
 
 ALPHABET = ALPHABET.lower()
-
 
 def get_encrypted_char(text_char: str, key_char: str) -> str:
     """
@@ -12,7 +11,7 @@ def get_encrypted_char(text_char: str, key_char: str) -> str:
     :return: The encrypted character or the original character if it's not in the alphabet.
     """
     if text_char not in ALPHABET:
-        return text_char  # Return the character unchanged if it's not in the alphabet
+        return text_char
 
     text_pos = ALPHABET.find(text_char)
     key_pos = ALPHABET.find(key_char)
@@ -20,7 +19,6 @@ def get_encrypted_char(text_char: str, key_char: str) -> str:
     encrypted_pos = (text_pos + key_pos) % len(ALPHABET)
 
     return ALPHABET[encrypted_pos]
-
 
 def tritemius_cipher(text: str, key: str) -> str:
     """
@@ -51,24 +49,3 @@ def tritemius_cipher(text: str, key: str) -> str:
             key_index += 1
 
     return ''.join(encrypted_text)
-
-
-def read_from_file(filename: str) -> str:
-    """Reads data from a file and returns the text."""
-    if not os.path.exists(filename):
-        raise FileNotFoundError(f"The file {filename} was not found.")
-
-    try:
-        with open(filename, "r", encoding="utf-8") as file:
-            return file.read().strip()
-    except IOError as e:
-        raise IOError(f"Error reading file {filename}: {e}")
-
-
-def save_to_file(filename: str, content: str) -> None:
-    """Saves data to a file."""
-    try:
-        with open(filename, "w", encoding="utf-8") as file:
-            file.write(content)
-    except IOError as e:
-        raise IOError(f"Error writing to file {filename}: {e}")
