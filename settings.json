@@ -1,0 +1,7 @@
+{
+  "encoded_sym_key": "encrypted_key.txt",
+  "rsa_private": "rsa_private_key.txt",
+  "plain_data": "data.txt",
+  "encrypted_data": "encrypted_data.txt",
+  "decrypted_output": "output.txt"
+}
